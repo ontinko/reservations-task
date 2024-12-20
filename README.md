@@ -2,7 +2,7 @@
 
 ### Prerequisites
 
-In order to run this application, you need [Docker](https://www.docker.com/) and [docker-compose](https://docs.docker.com/) installed and configured
+In order to run this application, you need [Docker and docker-compose](https://docs.docker.com/) installed and configured
 
 ### Notes
 
