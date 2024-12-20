@@ -5,9 +5,7 @@ export type ResultSuccess<T> = {
 
 export type ResultError = {
   data: null;
-  error: {
-    message: string,
-  };
+  error: string;
 };
 
 export type Result<T = any> = ResultSuccess<T> | ResultError;

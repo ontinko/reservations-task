@@ -25,9 +25,7 @@ export const fetchTimeslots = async ({
     }
     return {
       data: null,
-      error: {
-        message,
-      },
+      error: message,
     };
   }
 }

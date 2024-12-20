@@ -56,8 +56,8 @@ function App() {
     setIsMonthLoading(true);
 
     const { data, error } = await fetchTimeslots({ year, month });
-    if (error) {
-      setErrorMessage(error.message);
+    if (error !== null) {
+      setErrorMessage(error);
       return;
     }
 
@@ -121,12 +121,11 @@ function App() {
       selectedDate.getDate(),
       selectedDate.getHours(),
     ];
-    console.log(`Selected: ${day}/${month}/${year}, ${timeslot}:00`);
 
     setIsLoading(true);
     const { error } = await createReservation({ year, month, day, timeslot });
     if (error) {
-      setErrorMessage(error.message);
+      setErrorMessage(error);
     }
 
     setIsLoading(false);
@@ -136,18 +135,22 @@ function App() {
       setShowSuccess(true);
     }
     await getTimeslots({ year, month });
-    setSelectedDate(null);
+    // setSelectedDate(null);
   }
 
   const datePickerRef = useRef<HTMLDivElement | null>(null);
   const mainRef = useRef<HTMLDivElement | null>(null);
+
+  const isConfirmDisabled = selectedDate === null ||
+    !isDayAvailable(selectedDate) || 
+    !isTimeAvailable(selectedDate);
 
   return (
     <div className="w-full h-full flex justify-center">
       <div ref={mainRef} className="relative">
 
         {
-          errorMessage && mainRef.current && (
+          errorMessage !== null && mainRef.current && (
             <div
               style={{
                 width: `${mainRef.current.getBoundingClientRect().width}px`,
@@ -260,7 +263,7 @@ function App() {
               inline
             >
               <div className="w-full flex flex-col items-center justify-center">
-                <Button type="confirm" text="Confirm" onClick={onSelect} disabled={selectedDate === null} />
+                <Button type="confirm" text="Confirm" onClick={onSelect} disabled={isConfirmDisabled} />
               </div>
             </DatePicker>
           </div>

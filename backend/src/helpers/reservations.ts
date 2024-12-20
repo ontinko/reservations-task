@@ -24,13 +24,17 @@ export const createReservation = async ({ year, month, day, timeslot }: Reservat
       };
     }
 
-    await prisma.reservation.create({
-      data: {
-        year,
-        month,
-        day,
-        timeslot,
-      },
+    await prisma.$transaction(async (transaction) => {
+      await transaction.$executeRaw`LOCK TABLE "Reservation" IN ROW EXCLUSIVE MODE`;
+
+      await transaction.reservation.create({
+        data: {
+          year,
+          month,
+          day,
+          timeslot,
+        },
+      });
     });
 
     return {

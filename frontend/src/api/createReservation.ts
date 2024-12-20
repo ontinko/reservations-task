@@ -25,9 +25,7 @@ export const createReservation = async ({
     }
     return {
       data: null,
-      error: {
-        message,
-      },
+      error: message,
     };
   }
 }
