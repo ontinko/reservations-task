@@ -1,7 +1,3 @@
-export type ApiError = {
-  message: string;
-};
-
 export type ResultSuccess<T> = {
   data: T;
   error: null;
@@ -9,7 +5,9 @@ export type ResultSuccess<T> = {
 
 export type ResultError = {
   data: null;
-  error: ApiError;
+  error: {
+    message: string,
+  };
 };
 
 export type Result<T = any> = ResultSuccess<T> | ResultError;
