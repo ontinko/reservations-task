@@ -56,7 +56,7 @@ const validateDay = (req: ExtendedRequest, _res: Response, next: NextFunction) =
     errors.push("Day is required and must be a valid integer");
   } else if (day < 1 || day > 31 || prevValuesValid && day > daysInMonth({ year, month })) {
     errors.push("Day must be a valid day of month");
-  } else if (prevValuesValid && day < currentDay) {
+  } else if (prevValuesValid && year === currentYear && month === currentMonth && day < currentDay) {
     errors.push("Day must not be in the past");
   }
 
