@@ -1,4 +1,5 @@
 import { Button } from "./Button";
+import { Popup } from "./Popup";
 
 type Props = {
   message: string;
@@ -7,11 +8,11 @@ type Props = {
 
 export function ErrorPopup({ message, onClose }: Props) {
   return (
-    <div>
-      <div>{"Error: " + message}</div>
-      <div>
+    <Popup>
+      <div className="text-2xl font-semibold text-center w-full">{"Error: " + message}</div>
+      <div className="flex justify-center mt-4">
         <Button text="Close" onClick={onClose} />
       </div>
-    </div>
-  );
+    </Popup>
+  )
 }

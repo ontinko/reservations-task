@@ -143,7 +143,7 @@ function App() {
   const mainRef = useRef<HTMLDivElement | null>(null);
 
   return (
-    <div>
+    <div className="w-full h-full flex justify-center">
       <div ref={mainRef} className="relative">
 
         {
@@ -224,9 +224,9 @@ function App() {
           )
         }
 
-        <div>Restaurant Name</div>
-        <div>Make a reservation!</div>
-        <div className="relative">
+        <div className="text-4xl font-bold text-center text-gray-900 mt-8">Fancy Little Restaurant</div>
+        <div className="text-xl font-semibold text-center text-indigo-600 mt-4">Make a reservation now!</div>
+        <div className="relative mt-6 flex justify-center">
           {
             isMonthLoading && datePickerRef.current && (
               <div
