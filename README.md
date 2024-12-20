@@ -4,6 +4,14 @@
 
 In order to run this application, you need [Docker](https://www.docker.com/) and [docker-compose](https://docs.docker.com/) installed and configured
 
+### Notes
+
+Some notes regarding the task execution (compromises)
+
+ - I had to stick to PostgreSQL instead of MySQL because of MySQL and Prisma specific connection issues I didn't have time to figure out
+ - The API URL on the frontend is used directly for the same reason, some Vite specific behavior I couldn't figure out in time
+ - Ideally, in a larger app, I would probably use React Query to utilize caching and to avoid using my own flag variables like `isLoading`. However, in this app, I decided it would be OK to just go with plan axios
+
 ### Setup
 
 1. Get the source code

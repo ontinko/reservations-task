@@ -40,6 +40,18 @@ function App() {
   const [isConfirming, setIsConfirming] = useState<boolean>(false);
   const [showSuccess, setShowSuccess] = useState<boolean>(false);
 
+  useEffect(() => {
+    (async () => {
+      const [year, month] = [
+        new Date().getFullYear(),
+        new Date().getMonth() + 1,
+      ];
+
+      setSelectedMonth(month);
+      await getTimeslots({ year, month });
+    })();
+  }, []);
+
   const getTimeslots = async ({ year, month }: TimeslotData) => {
     setIsMonthLoading(true);
 
@@ -52,18 +64,6 @@ function App() {
     setTimeslots(data);
     setIsMonthLoading(false);
   }
-
-  useEffect(() => {
-    (async () => {
-      const [year, month] = [
-        new Date().getFullYear(),
-        new Date().getMonth() + 1,
-      ];
-
-      setSelectedMonth(month);
-      await getTimeslots({ year, month });
-    })();
-  }, []);
 
   const isDayAvailable = (date: Date): boolean => {
     const day = date.getDate();
